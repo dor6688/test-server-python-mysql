@@ -1,13 +1,15 @@
 import openai
 import numpy as np
-from keys import openai_key
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 MEMORY_SYSTEM_PROMPT = """You are a helpful assistant with access to previous conversation history. Use the provided context to give natural, conversational responses that incorporate relevant information from past discussions. Maintain a consistent and friendly tone while seamlessly integrating historical context into your responses. The content has Context from previous conversations 'context' and the specific user quesiton 'query'."""
 SIMILARITY_THRESHOLD = 0.8
 
 
 class OpenAIInterface:
-    def __init__(self, api_key: str = openai_key):
+    def __init__(self, api_key: str = os.getenv("OPENAI_KEY")):
         """Initialize the OpenAI interface with API key."""
         openai.api_key = api_key
         self.embedding_model = "text-embedding-3-small"  # "text-embedding-ada-002"
