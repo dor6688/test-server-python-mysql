@@ -70,6 +70,7 @@ user_context = {}
 
 @app.route("/all_messages", methods=["GET"])
 def get_all_message():
+    print("All messages")
     all_messages = db.get_all_messages()
     return all_messages
 
@@ -79,6 +80,7 @@ def get_all_message():
 def webhook():
     message = request.form.get("Body")
     from_number = request.form.get("From")
+    print(from_number, message)
     response = MessagingResponse()
     if from_number in user_context:
         context = user_context[from_number]
